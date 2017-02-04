@@ -1,0 +1,53 @@
+{
+	"id": "8153a307-75f4-b5c1-caa7-cb245bf9332a",
+	"name": "Hw1",
+	"description": "",
+	"order": [
+		"c45b2f64-b09b-9bf0-78b3-a13bef8e7653",
+		"f1e97f6e-57e4-931c-5ff7-e87c5736b43d"
+	],
+	"folders": [],
+	"timestamp": 1485642690673,
+	"owner": "1485967",
+	"public": false,
+	"requests": [
+		{
+			"id": "c45b2f64-b09b-9bf0-78b3-a13bef8e7653",
+			"headers": "",
+			"url": "https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+			"preRequestScript": "postman.setEnvironmentVariable(\"book_title\", \"Turing\");\n//postman.setEnvironmentVariable(\"id\", \"Turing\");\n\n",
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\r\n//postman.setEnvironmentVariable(\"id\", jsonData.id);\r\n\r\n\r\npostman.setEnvironmentVariable(\"id0\",jsonData.items[0].id); // got first ID in singe var, but not an array of all IDs..\r\n\r\nvar jsonData = JSON.parse(responseBody);\r\n\r\n(tests[\"Status code is 200\"] = responseCode.code === 200);\r\n\r\n///*\r\nfor(var i=0; i <jsonData.items.length; i++)\r\n{\r\n      \r\n    tests[\"title contains Turing\"] = jsonData.items[i].volumeInfo.title.includes(\"Turing\") // ensure all titles in the items array have Turing in it\r\n\r\n}\r\n//*/\r\n\r\n//postman.setEnvironmentVariable(\"l\",jsonData.items.length); // items array length\r\n//postman.setEnvironmentVariable(\"idArray\",\" \"); \r\n\r\n/*\r\nvar idArray;\r\n\r\nfor (var i = 0; i < l; i++){\r\n \r\n \r\n idArray += jsonData.items[i] + \", \";\r\n \r\n  \r\n}\r\n\r\npostman.setEnvironmentVariable(\"ids\",idArray); \r\n\r\n\r\n*/",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1485644002315,
+			"name": "https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+			"description": "",
+			"collectionId": "8153a307-75f4-b5c1-caa7-cb245bf9332a",
+			"responses": []
+		},
+		{
+			"id": "f1e97f6e-57e4-931c-5ff7-e87c5736b43d",
+			"headers": "",
+			"url": "https://www.googleapis.com/books/v1/volumes/{{id}}",
+			"preRequestScript": "postman.setEnvironmentVariable(\"book_title\", \"Turing\");\n//postman.setEnvironmentVariable(\"id\", \"Turing\");\n\n",
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "\r\n(tests[\"Status code is 200\"] = responseCode.code === 200);\r\n\r\nvar jsonData = JSON.parse(responseBody);\r\n\r\n\r\n\r\n(tests[\"response has correct ID number\"] = jsonData.id == \"BlPZ3sHHWpMC\");  // ensure id returned is same as id gathered from first request\r\n\r\n//*/\r\n\r\n//postman.setEnvironmentVariable(\"l\",jsonData.items.length); // items array length\r\n//postman.setEnvironmentVariable(\"idArray\",\" \"); \r\n\r\n/*\r\nvar idArray;\r\n\r\nfor (var i = 0; i < l; i++){\r\n \r\n \r\n idArray += jsonData.items[i] + \", \";\r\n \r\n  \r\n}\r\n\r\npostman.setEnvironmentVariable(\"ids\",idArray); \r\n\r\n\r\n*/\r\n\r\npostman.clearEnvironmentVariable(\"variable_key\");\r\n\r\npostman.setEnvironmentVariable(\"variable_key\", \"variable_value\");\r\n\r\npostman.setGlobalVariable(\"variable_key\", \"variable_value\");",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1485644532591,
+			"name": "https://www.googleapis.com/books/v1/volumes/{{id}}",
+			"description": "",
+			"collectionId": "8153a307-75f4-b5c1-caa7-cb245bf9332a",
+			"responses": []
+		}
+	]
+}
